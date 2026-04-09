@@ -15,11 +15,13 @@ body{
 }
 
 div{
-  width: 100vw;
   height: 100vh;
-  background: url("color.jpg");
-  background-size: cover;
+  width: 100vw;
+  background: url(images\ \(4\).jpg);
+  background-repeat: no-repeat;
   background-position: center;
+  background-size: auto;
+  z-index: -1;
 }
 
 #canvas{

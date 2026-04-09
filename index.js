@@ -8,38 +8,22 @@ const heightWithoutScrollbar = document.documentElement.clientHeight;
 canvas.width = widthWithoutScrollbar
 canvas.height = heightWithoutScrollbar
 
-
-const image1 = new Image()
-image1.src = "whitee.jpg"
-
-let scannedImage;
-let scannedData;
-
-image1.onload = () => {
-    ctx.drawImage(image1, 0, 0,canvas.width,canvas.height); 
-    scannedImage = ctx.getImageData(0,0,canvas.width,canvas.height)
-    scannedData = scannedImage.data
-};
+ctx.fillStyle = "black"
+ctx.fillRect(0,0,canvas.width,canvas.height)
 
 document.addEventListener("mousemove",(e)=>{
-    modifyImage(e.x,e.y)
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.fillRect(e.x, 0, canvas.width/6, canvas.height)
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.beginPath()
+    ctx.fillRect(e.x-200,0,canvas.width/6,canvas.height)
+    ctx.fillRect(e.x+200,0,canvas.width/6,canvas.height)
+    ctx.fill()
 })
 
-document.addEventListener("touchmove",(e)=>{
-    modifyImage(e.touches[0].pageX,e.touches[0].pageY)
-    alert("Hello")
+document.addEventListener("click",()=>{
+    ctx.fillRect(0,0,canvas.width,canvas.height)
 })
-
-function modifyImage(x,y){
-    let index = (y * widthWithoutScrollbar + x) * 4
-    for (let i = 0; i < 20; i++) {
-        if (scannedData.at(index) != undefined){
-            scannedData[index + 3] = 0
-            index += 4
-        }
-        
-    }
-    
-    scannedImage.data = scannedData
-    ctx.putImageData(scannedImage,0,0)
-}
