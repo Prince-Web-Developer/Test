@@ -1,0 +1,28 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --width: 100vw;
+}
+
+body{
+  background-color: black;
+  width: 100vw;
+  overflow: hidden;
+}
+
+div{
+  width: 100vw;
+  height: 100vh;
+  background: url("color.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#canvas{
+  width: var(--width);
+  height: 100vh;
+}
