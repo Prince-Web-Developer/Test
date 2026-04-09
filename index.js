@@ -27,6 +27,7 @@ document.addEventListener("mousemove",(e)=>{
 
 document.addEventListener("touchmove",(e)=>{
     modifyImage(e.touches[0].pageX,e.touches[0].pageY)
+    alert("Hello")
 })
 
 function modifyImage(x,y){
